@@ -1,0 +1,14 @@
+{
+  "name": "qr-toolkit-extension",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome/Edge 通用二维码识别与生成扩展（MV3，零依赖）",
+  "scripts": {
+    "test": "node test/roundtrip.js && node test/browser-smoke.js && node test/content-script-test.js",
+    "test:algo": "node test/roundtrip.js",
+    "test:browser": "node test/browser-smoke.js",
+    "test:page": "node test/content-script-test.js",
+    "shots": "node test/screenshots.js",
+    "icons": "python icons/make_icons.py"
+  }
+}

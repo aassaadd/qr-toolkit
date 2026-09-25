@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "二维码工具箱 · QR Toolkit",
+  "version": "1.0.0",
+  "description": "浏览器内识别与生成二维码：框选识别、整页识别、图片识别、上传/粘贴识别，一键复制，输入内容即可生成二维码。",
+  "minimum_chrome_version": "110",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "contextMenus",
+    "storage",
+    "downloads",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "二维码工具箱",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "scan-region": {
+      "suggested_key": {
+        "default": "Alt+Shift+Q"
+      },
+      "description": "框选识别二维码"
+    }
+  }
+}

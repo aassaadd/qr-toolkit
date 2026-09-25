@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>二维码工具箱</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="hd">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor" d="M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 0h2v7h-7v-2h5v-5zM8 8h3v3H8V8zm5 0h3v3h-3V8zm0 5h3v3h-3v-3zm-5 0h3v3H8v-3z"/>
+        </svg>
+      </span>
+      <span class="name">二维码工具箱</span>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="scan">识别</button>
+      <button class="tab" data-tab="make">生成</button>
+    </div>
+  </header>
+
+  <!-- ===================== 识别 ===================== -->
+  <section id="panel-scan" class="panel active">
+
+    <div id="drop" class="drop" tabindex="0">
+      <div class="drop-ic">⬆</div>
+      <div class="drop-main">点击选择图片 · 或拖拽到此处</div>
+      <div class="drop-sub">支持 Ctrl + V 粘贴截图／图片</div>
+      <input type="file" id="file" accept="image/*" hidden>
+    </div>
+
+    <div class="acts">
+      <button class="act" id="btn-region">
+        <span class="act-t">框选屏幕</span>
+        <span class="act-d">拖动鼠标框选二维码</span>
+      </button>
+      <button class="act" id="btn-viewport">
+        <span class="act-t">整页识别</span>
+        <span class="act-d">扫描当前可视区域</span>
+      </button>
+      <button class="act" id="btn-page">
+        <span class="act-t">页面图片</span>
+        <span class="act-d">扫描本页所有图片</span>
+      </button>
+    </div>
+
+    <div id="status" class="status hidden"><span class="spin"></span><span id="status-text">识别中…</span></div>
+
+    <div id="result" class="card hidden">
+      <div class="card-hd">
+        <span id="r-label" class="chip">文本</span>
+        <span id="r-meta" class="meta"></span>
+        <button id="r-clear" class="x" title="清空">×</button>
+      </div>
+      <div id="r-text" class="card-body"></div>
+      <div class="card-ft">
+        <button class="btn primary" id="btn-copy">一键复制</button>
+        <button class="btn hidden" id="btn-open">打开链接</button>
+      </div>
+    </div>
+
+    <div class="hist" id="hist-wrap">
+      <div class="hist-hd">
+        <span>历史记录</span>
+        <button id="btn-clear-hist" class="link">清空</button>
+      </div>
+      <div id="hist" class="hist-list"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 生成 ===================== -->
+  <section id="panel-make" class="panel">
+    <textarea id="mk-text" class="ta" placeholder="输入要生成二维码的内容，例如：https://example.com 、一段文字、WiFi 配置…"></textarea>
+
+    <div class="opts">
+      <label class="opt">尺寸
+        <select id="mk-size">
+          <option value="256">256</option>
+          <option value="384" selected>384</option>
+          <option value="512">512</option>
+          <option value="768">768</option>
+        </select>
+      </label>
+      <label class="opt">容错
+        <select id="mk-ecc">
+          <option value="L">L 低</option>
+          <option value="M" selected>M 中</option>
+          <option value="Q">Q 较高</option>
+          <option value="H">H 高</option>
+        </select>
+      </label>
+      <label class="opt">前景<input type="color" id="mk-fg" value="#0f172a"></label>
+      <label class="opt">背景<input type="color" id="mk-bg" value="#ffffff"></label>
+    </div>
+
+    <div class="preview">
+      <canvas id="mk-canvas" width="384" height="384"></canvas>
+      <div id="mk-empty" class="preview-empty">输入内容后自动生成</div>
+    </div>
+
+    <div class="card-ft">
+      <button class="btn primary" id="btn-mk-copyimg" disabled>复制图片</button>
+      <button class="btn" id="btn-mk-download" disabled>下载 PNG</button>
+      <button class="btn" id="btn-mk-copytxt" disabled>复制内容</button>
+    </div>
+    <div id="mk-error" class="err"></div>
+  </section>
+
+  <footer class="ft">
+    <span>快捷键 <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd> 框选</span>
+    <span>右键图片可识别</span>
+  </footer>
+</div>
+
+<script src="lib/jsQR.js"></script>
+<script src="lib/decode.js"></script>
+<script src="lib/qrcode.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# 依赖 / 构建产物
+node_modules/
+package-lock.json
+*.log
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 测试临时文件
+test/tmp/
+*.zip
+*.crx
+*.pem
