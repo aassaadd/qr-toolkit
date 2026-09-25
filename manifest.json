@@ -3,6 +3,8 @@
   "name": "二维码工具箱 · QR Toolkit",
   "version": "1.0.0",
   "description": "浏览器内识别与生成二维码：框选识别、整页识别、图片识别、上传/粘贴识别，一键复制，输入内容即可生成二维码。",
+  "author": "zhc",
+  "homepage_url": "https://github.com/aassaadd/qr-toolkit",
   "minimum_chrome_version": "110",
   "permissions": [
     "activeTab",

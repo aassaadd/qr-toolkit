@@ -3,6 +3,8 @@
 一个 Chrome / Edge 通用的浏览器扩展（Manifest V3，零外部依赖、完全离线）：
 **识别浏览器上的二维码 + 上传/粘贴图片识别 + 一键复制 + 输入内容生成二维码**。
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 ![识别结果](docs/popup-result.png)
 
 ## 功能一览
@@ -48,12 +50,15 @@
 ```
 qr-tool/
 ├── manifest.json          # MV3 清单
+├── LICENSE                # 本项目 MIT 许可
+├── THIRD-PARTY-NOTICES.md # 第三方组件许可声明
 ├── background.js          # Service Worker：右键菜单、区域截屏、跨域图片抓取、存储
 ├── content.js             # 内容脚本：框选遮罩、页内结果卡片、页面图片扫描
 ├── popup.html/css/js      # 弹窗界面（识别 / 生成两个标签页）
 ├── lib/
-│   ├── jsQR.js            # 识别库（MIT，257 KB）
-│   ├── qrcode.js          # 生成库（qrcode-generator，MIT，57 KB）
+│   ├── jsQR.js            # 识别库（jsQR 1.4.0，Apache-2.0）
+│   ├── qrcode.js          # 生成库（qrcode-generator 1.4.4，MIT）
+│   ├── licenses/          # 上述两库的许可证全文
 │   └── decode.js          # 解码工具：多轮降级识别 + 内容类型判定
 ├── icons/                 # 16/48/128 图标（make_icons.py 可重新生成）
 ├── docs/                  # 界面截图
@@ -104,3 +109,27 @@ node test/screenshots.js        # 重新生成 docs/ 下的界面截图
 - **页面图片扫描很快结束但没有结果** → 部分网站图片是懒加载（滚动后才加载），先滚动页面再扫描；单次最多扫描 40 张、尺寸 ≥40px 的图片。
 - **复制按钮提示「复制失败」** → 极少数页面限制了剪贴板权限，此时用结果卡片里的内容手动复制即可。
 - **生成的二维码扫不出来** → 降低容错级别或缩短内容（内容过长时界面会给出提示）；打印场景建议容错选 H、静区保留默认。
+
+## 开源许可
+
+本项目以 [MIT 许可](LICENSE) 发布，可自由使用、修改、分发（保留版权声明即可）：
+
+```
+Copyright (c) 2026 zhc
+Licensed under the MIT License. See LICENSE for the full text.
+```
+
+### 第三方组件
+
+扩展内打包了两份第三方开源库，**它们不是 MIT**，各自的许可与版权归原作者所有：
+
+| 组件 | 版本 | 用途 | 许可 | 版权 |
+| --- | --- | --- | --- | --- |
+| [jsQR](https://github.com/cozmo/jsQR) | 1.4.0 | 二维码解码 | **Apache-2.0** | Copyright (c) Cosmo Wolfe and contributors |
+| [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) | 1.4.4 | 二维码生成 | **MIT** | Copyright (c) 2009 Kazuhiko Arase |
+
+- 两份许可证全文见 `lib/licenses/`，完整声明见 [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md)。
+- Apache-2.0 的 jsQR 为官方发行构建原样引入，仅新增文件头许可注释，未改动逻辑；上游无 `NOTICE` 文件。
+- Apache-2.0 与 MIT 均允许商用与二次分发，但**都要求保留版权与许可声明**——若你 fork 后再发布，请勿删除 `LICENSE`、`THIRD-PARTY-NOTICES.md` 和 `lib/licenses/`。
+- 本项目与上述库的作者无隶属关系，也未获得其背书；「QR Code」是 DENSO WAVE INCORPORATED 的注册商标。
+

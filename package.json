@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "description": "Chrome/Edge 通用二维码识别与生成扩展（MV3，零依赖）",
+  "license": "MIT",
+  "author": "zhc <aassaadd@qq.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aassaadd/qr-toolkit.git"
+  },
   "scripts": {
     "test": "node test/roundtrip.js && node test/browser-smoke.js && node test/content-script-test.js",
     "test:algo": "node test/roundtrip.js",
